@@ -1,7 +1,7 @@
 //var testMe = document.getElementById('test-me');
 //testMe.style.color = 'blue';
-document.getElementById('test-me').style.color = 'blue';
-document.getElementById('test-me').style.backgroundColor = 'black';
+// document.getElementById('test-me').style.color = 'blue';
+// document.getElementById('test-me').style.backgroundColor = 'black';
 
 function rotator (word) {
     if (word === '') {
@@ -11,6 +11,7 @@ function rotator (word) {
     wLen = word.length;
     var letters = word.split('');
     var spannify = [];
+    var resArr = [];
 
     for (var i = 0; i < letters.length; i++) {
 
@@ -24,21 +25,28 @@ function rotator (word) {
         //console.log(spanning);
         var idx = letters[i] + "-" + word;
         var adx = '.style.color = "blue"';
-    //    console.log(idx);
-    //    console.log(adx);
-        var idadx = idx+adx;
-        console.log(idadx);
-        //console.log(spanning);
+        var idCol = idx+adx;
+        //console.log(idCol);
 
-
+        //needs to take this form:
+            // document.getElementById('test-me').style.color = 'blue';
+            var resId = "document.getElementById('" + idx +"')" + adx;
+            resArr.push(resId); //problem: only returning the value of the final iteration...
     }
-    return spannify.join("");
+    return {
+
+        spanning: spannify.join(""),
+        resArr: resArr.join(""),
+        resId: resId
+    }
 
 }
 
-var hackA = rotator('asdfasdfadsf');
+var hackA = rotator('hacking').spanning;
 var makeP = document.createElement('p');
 document.body.appendChild(makeP);
 makeP.innerHTML = hackA;
+console.log("array? : " + rotator('hacking').resId);
+rotator('hacking').resArr;
 
-console.log('final spanned content: ' + '\n' + hackA);
+//console.log('final spanned content: ' + '\n' + hackA);
