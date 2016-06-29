@@ -12,6 +12,7 @@ function rotator (word) {
     var letters = word.split('');
     var spannify = [];
     var resArr = [];
+    var resId = null;
 
     for (var i = 0; i < letters.length; i++) {
 
@@ -25,28 +26,40 @@ function rotator (word) {
         //console.log(spanning);
         var idx = letters[i] + "-" + word;
         var adx = '.style.color = "blue"';
+        var bdx = '.style.color = "green"';
         var idCol = idx+adx;
+        var idCol2 = idx+bdx;
         //console.log(idCol);
 
         //needs to take this form:
             // document.getElementById('test-me').style.color = 'blue';
-            var resId = "document.getElementById('" + idx +"')" + adx;
-            resArr.push(resId); //problem: only returning the value of the final iteration...
+            resId = "document.getElementById('" + idx +"')" + adx;
+            resArr.push(resId);
     }
-    return {
 
+    return {
         spanning: spannify.join(""),
-        resArr: resArr.join(""),
-        resId: resId
-    }
+        resArr: resArr,
+        resId: resId,
+        wLen: wLen
+    };
 
 }
 
-var hackA = rotator('hacking').spanning;
+var hackA = rotator('asdf').spanning;
 var makeP = document.createElement('p');
 document.body.appendChild(makeP);
 makeP.innerHTML = hackA;
-console.log("array? : " + rotator('hacking').resId);
-rotator('hacking').resArr;
+console.log("span 1 : " + rotator('asdf').resArr[0]);
+console.log('length of word/iterations: ' + wLen);
+
+var firstVal = rotator('asdf').resArr[0];
+var secVal = rotator('asdf').resArr[1];
+console.log('span 1: ' + firstVal);
+console.log('span 2: ' + secVal);
+console.dir(rotator('asdf').resArr);
+//console.log("this should be equal to previous value: " + testF);
+// document.getElementById('h-hacking').style.color = "blue"
+rotator('asdf');
 
 //console.log('final spanned content: ' + '\n' + hackA);
