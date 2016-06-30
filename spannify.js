@@ -101,7 +101,11 @@ function randomize(word) {
 
     for (var i = 0; i < letters.length; i++) {
 
-        var spanning = "<span id=\"" + letters[i] + "-" + word  + "\">" + letters[i] + "</span>";
+    //    var spanning = "<span id=\"" + letters[i] + "-" + word + "-" +  Math.random() + "\">" + letters[i] + "</span>";
+        var idHash = letters[i] + "-" + word + "-" +  Math.random();
+        var spanning = "<span id=\"" + idHash + "\">" + letters[i] + "</span>";
+        // var spanning = "<span id=\"" + letters[i] + "-" + word + "\">" + letters[i] + "</span>";
+
 
         spannify.push(spanning);
         //pulled from http://www.crockford.com/wrrrld/color.html
@@ -250,10 +254,10 @@ function randomize(word) {
             "yellow",
             "yellowgreen"
         ];
-        console.log(colArr.length);
-        idx = letters[i] + "-" + word;
-        holdIds.push(idx); //an array that holds each of these values
-        resId = "document.getElementById('" + idx +"')";
+        idx = letters[i] + "-" + word ;
+        holdIds.push(idHash); //an array that holds each of these values
+        resId = "document.getElementById('" + idHash +"')";
+        console.log(idHash);
         resArr.push(resId);
 
         if (i === letters.length-1){
@@ -267,7 +271,7 @@ function randomize(word) {
             for (k = 0; k < holdIds.length; k++) { //iterate through each id and do stuff
                 var atId = document.getElementById('' + holdIds[k] + '');
                 var randNum = Math.floor(Math.random() * colArr.length);
-                console.log('random: ' + randNum);
+        //        console.log('random: ' + randNum);
                 atId.style.color = colArr[randNum];
             }
         }
