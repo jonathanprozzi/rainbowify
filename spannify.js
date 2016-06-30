@@ -1,7 +1,3 @@
-//var testMe = document.getElementById('test-me');
-//testMe.style.color = 'blue';
-// document.getElementById('test-me').style.color = 'blue';
-// document.getElementById('test-me').style.backgroundColor = 'black';
 
 function rotator (word) {
     if (word === '') {
@@ -45,55 +41,47 @@ function rotator (word) {
 
         if (i === letters.length-1){
             console.log('this is the final iteration...appending');
-            spanning = spannify.join("");
+            spanning = spannify.join(""); // this array holds all the unique ids as elements, ie spannify[0] is the unique id for the first letter.
             //time to actually append things since its the last iteration
-            var holdP = document.createElement('p');
-            holdP.id = word + "-" + "holder";
-            var addMe = holdP.innerHTML = spanning;
-            document.body.appendChild(holdP);
+            var holdHead = document.createElement('h3');
+            holdHead.id = word + "-" + "holder";
+            var addMe = holdHead.innerHTML = spanning;
+            document.body.appendChild(holdHead);
             //at this point, the spans are all appended to the html with unique ids
-            console.dir(spannify); // this array holds all the unique ids as elements, ie spannify[0] is the unique id for the first letter. need to slice it to get the actual id. slice it out from the span
-        //    console.dir(holdIds);
-        //    console.log(holdIds[0]);
 
             for (k = 0; k < holdIds.length; k++) { //iterate through each id and do stuff
                 var idArr = [];
                 //console.log('testing holdIds: ' + holdIds[k]);
                 var atId = document.getElementById('' + holdIds[k] + '');
                 console.log(atId);
-
-                /* attempt one - mistakenly converted the .style.color to a string :)
-                console.log('testing atId: ' + atId + ' at pos: ' + k);
-                idArr.push(atId);
-                var idJoined = atId + '.style.color = "' + colArr[k] + "\"";
-                console.log(idJoined);
-                console.log('testing idJoined: ' + idJoined);
-                console.log('id arr: ' + idArr[k]);
-                console.log(document.getElementById('\'' + idArr[k] + '.style.color = "' + colArr[k] + "\""));
-
-                */
-                if (wLen > colArr.length) {
-                    //wLen = word length
-                    //colArr = length of color array
-                    //if wLen exceeds the color array, then it needs to get set back to 0
-                    console.log('word length exceeds array length!');
-
-                    var excessAmt = wLen - colArr.length;
-
-                    for (var j = 0; j < excessAmt; j++) {
-                        // colPos = '.style.color = "' + colArr[j] + '"';
-                        colPos = colArr[j];
-                    }
-
-                } else {
-                    // colPos = '.style.color = "' + colArr[i]+ '"';
-                        colPos = colArr[i];
-                }
+                console.dir(holdIds);
+                console.log('length check: letters- ' + letters.length);
+                console.log('length check ids-' + holdIds.length);
                 atId.style.color = colArr[k];
+
+                // if (wLen > colArr.length) {
+                //     //wLen = word length
+                //     //colArr = length of color array
+                //     //if wLen exceeds the color array, then it needs to get set back to 0
+                //     console.log('word length exceeds array length!');
+                //
+                //     var excessAmt = wLen - colArr.length;
+                //     console.log('excess amt: ' + excessAmt);
+
+                    // for (var j = 0; j < excessAmt; j++) {
+                    //     var xst = colArr.length - excessAmt;
+                    //     console.log('wLen: ' + wLen);
+                    //     console.log('color array: ' + colArr.length);
+                    //     var currentColor = (wLen) % colArr.length;
+                    //     console.log('current color: ' + currentColor);
+                    //     console.log('test: ' + xst);
+                    //     console.log('test 2: ' + colArr[j]);
+                    //     atId.style.color = colArr[currentColor];
+                    // }
+                //} // end if statement
+            //    atId.style.color = colArr[k];
             }
-
         }
-
     }
 
     //return back the values
@@ -105,26 +93,4 @@ function rotator (word) {
     };
 }
 
-// testing and debugging section:
-
-//console.log('final spanned content: ' + rotator('asdf').spanning);
-    // final spanned content: <span id="a-asdf">a</span><span id="s-asdf">s</span><span id="d-asdf">d</span><span id="f-asdf">f</span>
-
-/*
-var hackA = rotator('asdf').spanning;
-var makeP = document.createElement('p');
-document.body.appendChild(makeP);
-makeP.innerHTML = hackA;
-console.log("span 1 : " + rotator('asdf').resArr[0]);
-console.log('length of word/iterations: ' + wLen);
-var firstVal = rotator('asdf').resArr[0];
-var secVal = rotator('asdf').resArr[1];
-console.log('span 1: ' + firstVal);
-console.log('span 2: ' + secVal);
-//console.log("this should be equal to previous value: " + testF);
-// document.getElementById('h-hacking').style.color = "blue"
-console.log(rotator('asdf').spanning);
-*/
-rotator('rainbowify');
-// var test = document.getElementById('\'' + rotator.atId + '\'');
-// test.style.color="red";
+rotator('rainbow');
