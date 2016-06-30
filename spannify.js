@@ -1,5 +1,5 @@
 
-function rotator (word) {
+function rainbow (word) {
     if (word === '') {
         console.error('please enter a string (or a string that isnt nothing)');
     }
@@ -23,7 +23,7 @@ function rotator (word) {
         //var apx = document.body.appendChild(spanning);
         //append the style properties to the new ids
 
-        console.log('iteration: ' + i + ', span value: ' + spanning);
+        //console.log('iteration: ' + i + ', span value: ' + spanning);
 
         //store the colors in an array with an index linked to the current iteration
         var colArr = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
@@ -36,11 +36,11 @@ function rotator (word) {
         //needs to take this form:
             // document.getElementById('test-me').style.color = 'blue';
         resId = "document.getElementById('" + idx +"')" + colPos;
-        console.log('iteration: ' + i + ', res id: ' + resId); // just a log to check
+        //console.log('iteration: ' + i + ', res id: ' + resId); // just a log to check
         resArr.push(resId);
 
         if (i === letters.length-1){
-            console.log('this is the final iteration...appending');
+            //console.log('this is the final iteration...appending');
             spanning = spannify.join(""); // this array holds all the unique ids as elements, ie spannify[0] is the unique id for the first letter.
             //time to actually append things since its the last iteration
             var holdHead = document.createElement('h3');
@@ -50,13 +50,7 @@ function rotator (word) {
             //at this point, the spans are all appended to the html with unique ids
 
             for (k = 0; k < holdIds.length; k++) { //iterate through each id and do stuff
-                var idArr = [];
-                //console.log('testing holdIds: ' + holdIds[k]);
                 var atId = document.getElementById('' + holdIds[k] + '');
-                console.log(atId);
-                console.dir(holdIds);
-                console.log('length check: letters- ' + letters.length);
-                console.log('length check ids-' + holdIds.length);
                 atId.style.color = colArr[k];
 
                 // if (wLen > colArr.length) {
@@ -67,30 +61,217 @@ function rotator (word) {
                 //
                 //     var excessAmt = wLen - colArr.length;
                 //     console.log('excess amt: ' + excessAmt);
+                //
+                //     for (var j = 0; j < excessAmt; j++) {
+                //         console.log('wLen: ' + wLen);
+                //         console.log(k);
+                //         console.log(wLen - (k + 1));
+                //         atId.style.color = colArr[wLen - (k + 1)];
+                //
+                //     }
+                // } // end if statement
 
-                    // for (var j = 0; j < excessAmt; j++) {
-                    //     var xst = colArr.length - excessAmt;
-                    //     console.log('wLen: ' + wLen);
-                    //     console.log('color array: ' + colArr.length);
-                    //     var currentColor = (wLen) % colArr.length;
-                    //     console.log('current color: ' + currentColor);
-                    //     console.log('test: ' + xst);
-                    //     console.log('test 2: ' + colArr[j]);
-                    //     atId.style.color = colArr[currentColor];
-                    // }
-                //} // end if statement
-            //    atId.style.color = colArr[k];
             }
         }
     }
-
     //return back the values
+    /*
     return {
         spanning: spannify.join(""),
         resArr: resArr,
         resId: resId,
         wLen: wLen,
     };
+    */
 }
 
-rotator('rainbow');
+rainbow('rainbowst');
+
+function randomize(word) {
+    if (word === '') {
+        console.error('please enter a string (or a string that isnt nothing)');
+    }
+
+    wLen = word.length;
+    var letters = word.split('');
+    var spannify = [];
+    var holdIds = [];
+    var resArr = [];
+    var resId;
+
+    for (var i = 0; i < letters.length; i++) {
+
+        var spanning = "<span id=\"" + letters[i] + "-" + word  + "\">" + letters[i] + "</span>";
+
+        spannify.push(spanning);
+        //pulled from http://www.crockford.com/wrrrld/color.html
+            //includes all css color values
+
+        var colArr = [
+            "aliceblue",
+            "antiquewhite",
+            "aqua",
+            "aquamarine",
+            "azure",
+            "beige",
+            "bisque",
+            "black",
+            "blanchedalmond",
+            "blue",
+            "blueviolet",
+            "brown",
+            "burlywood",
+            "cadetblue",
+            "chartreuse",
+            "chocolate",
+            "coral",
+            "cornflowerblue",
+            "cornsilk",
+            "crimson",
+            "cyan",
+            "darkblue",
+            "darkcyan",
+            "darkgoldenrod",
+            "darkgray",
+            "darkgreen",
+            "darkkhaki",
+            "darkmagenta",
+            "darkolivegreen",
+            "darkorange",
+            "darkorchid",
+            "darkred",
+            "darksalmon",
+            "darkseagreen",
+            "darkslateblue",
+            "darkslategray",
+            "darkturquoise",
+            "darkviolet",
+            "deeppink",
+            "deepskyblue",
+            "dimgray",
+            "dodgerblue",
+            "firebrick",
+            "floralwhite",
+            "forestgreen",
+            "fuchsia",
+            "gainsboro",
+            "ghostwhite",
+            "gold",
+            "goldenrod",
+            "gray",
+            "green",
+            "greenyellow",
+            "honeydew",
+            "hotpink",
+            "indianred",
+            "indigo",
+            "ivory",
+            "khaki",
+            "lavender",
+            "lavenderblush",
+            "lawngreen",
+            "lemonchiffon",
+            "lightblue",
+            "lightcoral",
+            "lightcyan",
+            "lightgoldenrodyellow",
+            "lightgray",
+            "lightgreen",
+            "lightpink",
+            "lightsalmon",
+            "lightseagreen",
+            "lightskyblue",
+            "lightslategray",
+            "lightsteelblue",
+            "lightyellow",
+            "lime",
+            "limegreen",
+            "linen",
+            "magenta",
+            "maroon",
+            "mediumaquamarine",
+            "mediumblue",
+            "mediumorchid",
+            "mediumpurple",
+            "mediumseagreen",
+            "mediumslateblue",
+            "mediumspringgreen",
+            "mediumturquoise",
+            "mediumvioletred",
+            "midnightblue",
+            "mintcream",
+            "mistyrose",
+            "moccasin",
+            "navajowhite",
+            "navy",
+            "oldlace",
+            "olive",
+            "olivedrab",
+            "orange",
+            "orangered",
+            "orchid",
+            "palegoldenrod",
+            "palegreen",
+            "paleturquoise",
+            "palevioletred",
+            "papayawhip",
+            "peachpuff",
+            "peru",
+            "pink",
+            "plum",
+            "powderblue",
+            "purple",
+            "rebeccapurple",
+            "red",
+            "rosybrown",
+            "royalblue",
+            "saddlebrown",
+            "salmon",
+            "sandybrown",
+            "seagreen",
+            "seashell",
+            "sienna",
+            "silver",
+            "skyblue",
+            "slateblue",
+            "slategray",
+            "snow",
+            "springgreen",
+            "steelblue",
+            "tan",
+            "teal",
+            "thistle",
+            "tomato",
+            "turquoise",
+            "violet",
+            "wheat",
+            "white",
+            "whitesmoke",
+            "yellow",
+            "yellowgreen"
+        ];
+        console.log(colArr.length);
+        idx = letters[i] + "-" + word;
+        holdIds.push(idx); //an array that holds each of these values
+        resId = "document.getElementById('" + idx +"')";
+        resArr.push(resId);
+
+        if (i === letters.length-1){
+            //console.log('this is the final iteration...appending');
+            spanning = spannify.join("");
+            var holdHead = document.createElement('h3');
+            holdHead.id = word + "-" + "holder";
+            var addMe = holdHead.innerHTML = spanning;
+            document.body.appendChild(holdHead);
+
+            for (k = 0; k < holdIds.length; k++) { //iterate through each id and do stuff
+                var atId = document.getElementById('' + holdIds[k] + '');
+                var randNum = Math.floor(Math.random() * colArr.length);
+                console.log('random: ' + randNum);
+                atId.style.color = colArr[randNum];
+            }
+        }
+    }
+}
+
+randomize('abcdefghijklmnopqrstuvwxyz');
