@@ -10,6 +10,7 @@ var rainbowify = function(word) {
     var holdIds = [];
     var holdAll = [];
     var resArr = [];
+    var addedWords = [];
 
     var spanning = function(ele, ind, arr) {
         spannify.push("<span id=\"" + ele + "." + ind + "-" + word + "\">" + ele + "</span>");
@@ -64,18 +65,3 @@ var rainbowify = function(word) {
 rainbowify('codingRainbow!');
 rainbowify('words are great when they become rainbows!');
 rainbowify('is that the case? i think so!');
-var wordInput = document.getElementById('word-input');
-var wordSubmit = document.getElementById('word-submit');
-
-//wordInput.addEventListener('input', function(){console.log('input received: ' + this.value);}, false);
-wordInput.addEventListener('input',
-    function() {
-        rainbowify(wordInput.value);
-        console.log('input sent! ' + wordInput.value);
-    }, false);
-
-wordSubmit.addEventListener('click',
-    function() {
-        rainbowify('oooh secret!');
-        console.log('input sent: ' + wordInput.value);
-    }, false);
