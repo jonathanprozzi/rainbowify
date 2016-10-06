@@ -1,5 +1,6 @@
+var rainbowify = function() {
 
-function rainbow (word) {
+var rainbow = function (word) {
     if (word === '') {
         console.error('please enter a string (or a string that isnt nothing)');
     }
@@ -8,85 +9,65 @@ function rainbow (word) {
     var letters = word.split('');
     var spannify = [];
     var holdIds = [];
+    var holdAll = [];
     var resArr = [];
     var resId;
     var colPos;
 
-    for (var i = 0; i < letters.length; i++) {
+    //<span id ="unique-id">h</span>
+        //need to append a unique id to each letter after spanning it
+    //this places each letter inside a span and then pushes to an array
 
-        //<span id ="unique-id">h</span>
-            //need to append a unique id to each letter after spanning it
-        //this places each letter inside a span
-        var spanning = "<span id=\"" + letters[i] + "-" + word  + "\">" + letters[i] + "</span>";
-
-        spannify.push(spanning); //push each spanning value to an array
-        //var apx = document.body.appendChild(spanning);
-        //append the style properties to the new ids
-
-        //console.log('iteration: ' + i + ', span value: ' + spanning);
-
-        //store the colors in an array with an index linked to the current iteration
-        var colArr = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-
-        idx = letters[i] + "-" + word;
-        holdIds.push(idx); //an array that holds each of these values
-
-        idCol = idx+colPos;
-
-        //needs to take this form:
-            // document.getElementById('test-me').style.color = 'blue';
-        resId = "document.getElementById('" + idx +"')" + colPos;
-        //console.log('iteration: ' + i + ', res id: ' + resId); // just a log to check
-        resArr.push(resId);
-
-        if (i === letters.length-1){
-            //console.log('this is the final iteration...appending');
-            spanning = spannify.join(""); // this array holds all the unique ids as elements, ie spannify[0] is the unique id for the first letter.
-            //time to actually append things since its the last iteration
-            var holdHead = document.createElement('h3');
-            holdHead.id = word + "-" + "holder";
-            var addMe = holdHead.innerHTML = spanning;
-            document.body.appendChild(holdHead);
-            //at this point, the spans are all appended to the html with unique ids
-
-            for (k = 0; k < holdIds.length; k++) { //iterate through each id and do stuff
-                var atId = document.getElementById('' + holdIds[k] + '');
-                atId.style.color = colArr[k];
-
-                // if (wLen > colArr.length) {
-                //     //wLen = word length
-                //     //colArr = length of color array
-                //     //if wLen exceeds the color array, then it needs to get set back to 0
-                //     console.log('word length exceeds array length!');
-                //
-                //     var excessAmt = wLen - colArr.length;
-                //     console.log('excess amt: ' + excessAmt);
-                //
-                //     for (var j = 0; j < excessAmt; j++) {
-                //         console.log('wLen: ' + wLen);
-                //         console.log(k);
-                //         console.log(wLen - (k + 1));
-                //         atId.style.color = colArr[wLen - (k + 1)];
-                //
-                //     }
-                // } // end if statement
-
-            }
-        }
-    }
-    //return back the values
-    /*
-    return {
-        spanning: spannify.join(""),
-        resArr: resArr,
-        resId: resId,
-        wLen: wLen,
+    var spanning = function(ele, ind, arr) {
+        spannify.push("<span id=\"" + ele + "." + ind + "-" + word  + "\">" + ele + "</span>");
     };
-    */
-}
 
-rainbow('rainbowst');
+    letters.forEach(spanning);
 
+    var makeId = function(ele, ind, arr) {
+        holdIds.push(ele + "." + ind + "-" + word);
+        return ele + "." + ind + "-" + word;
+    };
+
+    letters.forEach(makeId);
+
+    var idGrab = function(ele, ind, arr) {
+        holdAll.push(ele + "." + ind + "-" + word);
+        return ele + "." + ind + "-" + word;
+    };
+
+    //an array that holds each of these unique id values
+    letters.forEach(idGrab);
+
+    var docId = function(ele, ind, arr) {
+        resArr.push("document.getElementById('" + ele + "')");
+        return "document.getElementById('" + ele + "')";
+    };
+
+    var appending = function(ele, ind, arr) {
+        if (ind === word.length-1) {
+            var spanJoin = spannify.join("");
+            var holdPara = document.createElement('p');
+            holdPara.id = word + "-" + "holder";
+            holdIds.push(ele);
+            var addMe = holdPara.innerHTML = spanJoin;
+            document.body.appendChild(holdPara);
+        }
+    };
+
+    resArr.forEach(appending);
+
+    var rainbowArray = ['', 'red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+
+    var colorify = function(ele, ind, arr) {
+        var atId = document.getElementById('' + ele + '');
+        atId.style.color = rainbowArray[ind % rainbowArray.length + 1];
+    };
+
+    holdIds.map(colorify);
+};
+rainbow('codingrainbow');
+/*
 function randomize(word, amt) {
     if (word === '') {
         console.error('please enter a string (or a string that isnt nothing)');
@@ -282,3 +263,5 @@ function randomize(word, amt) {
 randomize('abcdefghijklmnopqrstuvwxyz');
 var longStr = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
 randomize(longStr);
+*/
+}();
