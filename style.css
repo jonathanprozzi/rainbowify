@@ -22,3 +22,15 @@
 body {
     background-color: #eee8d5;
 }
+
+#wrapper {
+    /* width: 800px; */
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 10px;
+}
+
+#rainbow-holder p {
+    line-height: 1.4;
+    font-size: 120%;
+}
