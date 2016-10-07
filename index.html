@@ -8,20 +8,24 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>rainbowify for great justice </h1>
-    <p>rewriting the initial app in functional js style :]</p>
-    <p>therefore, testing the rainbowify and randomizer functions:</p>
-    <br/>
-    <section id="main-area">
-        <input type="text" id="word-input">
-        <button id="word-submit">rainbowify!</button>
-        <div id="rainbow-holder">
-
-        </div>
-    </section>
-    <br/>
-    <script src="rainbowify.js"></script>
-    <script src="sketch.js"></script>
+    <div id="wrapper">
+        <h1>rainbowify for great justice </h1>
+        <p>rewriting the initial app in functional js style :]</p>
+        <p>therefore, testing the rainbowify and randomizer functions:</p>
+        <br/>
+        <section id="main-area">
+            <input type="text" id="word-input">
+            <button id="word-submit">rainbowify!</button>
+            <br/>
+            <input type="checkbox" value="spaces" id="rainbowify-option-spaces">add spaces<br/>
+            <input type="checkbox" value="randomize" id="rainbowify-option-randomize">randomize<br/>
+            <div id="rainbow-holder">
+            </div>
+        </section>
+        <br/>
+        <script src="rainbowify.js"></script>
+        <script src="sketch.js"></script>
+    </div>
 </body>
 
 </html>

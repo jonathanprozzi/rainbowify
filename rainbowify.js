@@ -1,7 +1,15 @@
-var rainbowify = function(word) {
+var addedWords = [];
+
+var rainbowify = function(word, spc) {
 
     if (word === '') {
         console.error('please enter a string (or a string that isnt nothing)');
+        return;
+    }
+
+    if (addedWords.includes(word) === true){
+        console.error('please enter a unique string');
+        return;
     }
 
     wLen = word.length;
@@ -10,10 +18,14 @@ var rainbowify = function(word) {
     var holdIds = [];
     var holdAll = [];
     var resArr = [];
-    var addedWords = [];
 
     var spanning = function(ele, ind, arr) {
-        spannify.push("<span id=\"" + ele + "." + ind + "-" + word + "\">" + ele + "</span>");
+        if (spc === false) {
+            spannify.push("<span id=\"" + ele + "." + ind + "-" + word + "\">" + ele + "</span>");
+        }
+        if (spc === true) {
+            spannify.push("<span id=\"" + ele + "." + ind + "-" + word + "\">" + ele + " " + "</span>");
+        }
     };
 
     var makeId = function(ele, ind, arr) {
@@ -59,9 +71,9 @@ var rainbowify = function(word) {
     };
 
     holdIds.map(colorify);
-
+    addedWords.push(word);
 };
 
-rainbowify('codingRainbow!');
-rainbowify('words are great when they become rainbows!');
-rainbowify('is that the case? i think so!');
+rainbowify('codingRainbow!', false);
+rainbowify('words are great when they become rainbows!', false);
+rainbowify('is that the case? i think so!', true);
