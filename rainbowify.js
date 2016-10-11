@@ -1,12 +1,10 @@
 var addedWords = [];
 
-var rainbowify = function(word, spc) {
-
+var rainbowify = function(word, spc, rnd) {
     if (word === '') {
         console.error('please enter a string (or a string that isnt nothing)');
         return;
     }
-
     if (addedWords.includes(word) === true){
         console.error('please enter a unique string');
         return;
@@ -63,17 +61,179 @@ var rainbowify = function(word, spc) {
 
     resArr.forEach(appending);
 
+    //basic roygbiv fun
     var rainbowArray = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+
+    //pulled from http://www.crockford.com/wrrrld/color.html
+    //-> includes all css color values
+
+    var fullColorArray = [
+        "aliceblue",
+        "antiquewhite",
+        "aqua",
+        "aquamarine",
+        "azure",
+        "beige",
+        "bisque",
+        "black",
+        "blanchedalmond",
+        "blue",
+        "blueviolet",
+        "brown",
+        "burlywood",
+        "cadetblue",
+        "chartreuse",
+        "chocolate",
+        "coral",
+        "cornflowerblue",
+        "cornsilk",
+        "crimson",
+        "cyan",
+        "darkblue",
+        "darkcyan",
+        "darkgoldenrod",
+        "darkgray",
+        "darkgreen",
+        "darkkhaki",
+        "darkmagenta",
+        "darkolivegreen",
+        "darkorange",
+        "darkorchid",
+        "darkred",
+        "darksalmon",
+        "darkseagreen",
+        "darkslateblue",
+        "darkslategray",
+        "darkturquoise",
+        "darkviolet",
+        "deeppink",
+        "deepskyblue",
+        "dimgray",
+        "dodgerblue",
+        "firebrick",
+        "floralwhite",
+        "forestgreen",
+        "fuchsia",
+        "gainsboro",
+        "ghostwhite",
+        "gold",
+        "goldenrod",
+        "gray",
+        "green",
+        "greenyellow",
+        "honeydew",
+        "hotpink",
+        "indianred",
+        "indigo",
+        "ivory",
+        "khaki",
+        "lavender",
+        "lavenderblush",
+        "lawngreen",
+        "lemonchiffon",
+        "lightblue",
+        "lightcoral",
+        "lightcyan",
+        "lightgoldenrodyellow",
+        "lightgray",
+        "lightgreen",
+        "lightpink",
+        "lightsalmon",
+        "lightseagreen",
+        "lightskyblue",
+        "lightslategray",
+        "lightsteelblue",
+        "lightyellow",
+        "lime",
+        "limegreen",
+        "linen",
+        "magenta",
+        "maroon",
+        "mediumaquamarine",
+        "mediumblue",
+        "mediumorchid",
+        "mediumpurple",
+        "mediumseagreen",
+        "mediumslateblue",
+        "mediumspringgreen",
+        "mediumturquoise",
+        "mediumvioletred",
+        "midnightblue",
+        "mintcream",
+        "mistyrose",
+        "moccasin",
+        "navajowhite",
+        "navy",
+        "oldlace",
+        "olive",
+        "olivedrab",
+        "orange",
+        "orangered",
+        "orchid",
+        "palegoldenrod",
+        "palegreen",
+        "paleturquoise",
+        "palevioletred",
+        "papayawhip",
+        "peachpuff",
+        "peru",
+        "pink",
+        "plum",
+        "powderblue",
+        "purple",
+        "rebeccapurple",
+        "red",
+        "rosybrown",
+        "royalblue",
+        "saddlebrown",
+        "salmon",
+        "sandybrown",
+        "seagreen",
+        "seashell",
+        "sienna",
+        "silver",
+        "skyblue",
+        "slateblue",
+        "slategray",
+        "snow",
+        "springgreen",
+        "steelblue",
+        "tan",
+        "teal",
+        "thistle",
+        "tomato",
+        "turquoise",
+        "violet",
+        "wheat",
+        "white",
+        "whitesmoke",
+        "yellow",
+        "yellowgreen"
+    ];
 
     var colorify = function(ele, ind, arr) {
         var atId = document.getElementById('' + ele + '');
-        atId.style.color = rainbowArray[ind % rainbowArray.length];
+        if (rnd === false) {
+            atId.style.color = rainbowArray[ind % rainbowArray.length];
+        }
+
+        if (rnd === true) {
+            var randNumCol = Math.floor(Math.random() * fullColorArray.length);
+            atId.style.color = fullColorArray[ind % randNumCol];
+        }
+
     };
 
     holdIds.map(colorify);
     addedWords.push(word);
+
 };
 
-rainbowify('codingRainbow!', false);
-rainbowify('words are great when they become rainbows!', false);
-rainbowify('is that the case? i think so!', true);
+// test cases:
+var longStr = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
+rainbowify('codingRainbow!', false, false);
+rainbowify('words are great when they become rainbows!', false, false);
+rainbowify('is that the case? i think so!', true, false);
+rainbowify('seeing if the randomizer works for a rather large chunk of text. im not sure if this will work...will this work!?', false, true);
+rainbowify(longStr, false, true);
