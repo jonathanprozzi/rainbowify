@@ -10,13 +10,13 @@ var rainbowify = function(word, spc, rnd) {
         return;
     }
 
-    wLen = word.length;
     var letters = word.split('');
     var spannify = [];
     var holdIds = [];
     var holdAll = [];
     var resArr = [];
 
+    // i know that forEach doesnt allow for a returned value. those are there for possible later uses
     var spanning = function(ele, ind, arr) {
         if (spc === false) {
             spannify.push("<span id=\"" + ele + "." + ind + "-" + word + "\">" + ele + "</span>");

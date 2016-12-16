@@ -20,11 +20,10 @@
  */
 
 body {
-    background-color: #eee8d5;
+    background-color: #756f6f;
 }
 
 #wrapper {
-    /* width: 800px; */
     max-width: 600px;
     margin: 40px auto;
     padding: 0 10px;
